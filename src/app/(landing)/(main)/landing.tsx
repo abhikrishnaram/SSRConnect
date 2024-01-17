@@ -3,7 +3,7 @@ import React from 'react';
 
 const Landing = () => (
     <div className="min-h-screen relative w-full">
-        <Image src="/assets/amma.jpeg" alt="background" fill className="object-cover" />
+        <Image src="/assets/amma.jpeg" alt="background" fill className="object-cover object-top" />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
         <div className="absolute left-0 bottom-16 flex items-center justify-center bg-primary p-8 pl-16 rounded">

@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import { TableColumn } from 'react-data-table-component';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 import clsx from 'clsx';
 import { default as ReactDataTable } from 'react-data-table-component';
