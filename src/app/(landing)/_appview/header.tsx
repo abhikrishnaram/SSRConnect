@@ -46,7 +46,7 @@ const Header = ({ scrollEffect = true, variant } : { scrollEffect: boolean, vari
           className={clsx([
             !scrollEffect && 'bg-white',
             scrolled ? 'bg-white' : 'bg-transparent',
-            (scrolled || !scrollEffect) && variant === 'line' ? 'border-b' : 'shadow-lg',
+            (!scrollEffect || (scrollEffect && scrolled)) && (variant === 'line' ? 'border-b' : 'shadow-lg'),
             'transition-all duration-300 ease-in-out fixed w-full z-50',
           ])}
       >

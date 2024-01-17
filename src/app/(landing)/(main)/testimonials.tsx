@@ -12,7 +12,7 @@ import Image from 'next/image';
 const TestimonialItem = ({ content, avatar, name, designation }: any) => {
   return (
       <section className="p-6">
-          <div className="container max-w-xl mx-auto">
+          <div className="container max-w-2xl mx-auto">
               <div className="flex flex-col items-center w-full p-6 space-y-8 rounded-md lg:h-full lg:p-8 dark:bg-gray-900 dark:text-gray-100">
                   <Image
                       src={avatar}
@@ -85,7 +85,7 @@ const Testimonials = () => {
       <section className="text-gray-600 body-font w-full">
           <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-col text-center w-full mb-14">
-                  <h1 className="text-2xl font-medium title-font mb-2 text-primary tracking-widest">Testimonials</h1>
+                  <h1 className="text-lg font-bold title-font mb-2 text-primary tracking-widest">Testimonials</h1>
                   <p className="lg:w-2/3 mx-auto leading-relaxed opacity-75 text-sm">
                       See what our faculty, students, and alumni have to say about their experience with the program.
                   </p>
