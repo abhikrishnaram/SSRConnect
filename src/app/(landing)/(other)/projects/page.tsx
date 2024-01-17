@@ -7,7 +7,7 @@ import ProjectsMain from '@/app/(landing)/(other)/projects/main';
 
 const ProjectsPage = async ({ searchParams }: any) => {
 
-  const projects = await fetch(`${process.env.NEXTAUTH_URL}/api/get/projects?query=${searchParams?.query ?? ''}`).then((res) => res.json());
+  const projects = await fetch(`${process.env.NEXT_PUBLIC_DOMAIN}/api/get/projects?query=${searchParams?.query ?? ''}`).then((res) => res.json());
 
   if(projects?.error) {
     toast.error(projects.error);

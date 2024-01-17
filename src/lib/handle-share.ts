@@ -1,4 +1,4 @@
-import {toast} from "react-toastify";
+import { toast } from 'react-toastify';
 
 type TData = {
   title: string;
@@ -7,7 +7,7 @@ type TData = {
 
 const handleShare = (e: any, data: TData, url: string) => {
   e?.stopPropagation();
-  const link = `${process.env.NEXT_PUBLIC_BASE_URL}${url}`;
+  const link = `${process.env.NEXT_PUBLIC_DOMAIN}${url}`;
   if(navigator?.canShare?.() && navigator?.share) {
     navigator.share({
       title: data?.title,
