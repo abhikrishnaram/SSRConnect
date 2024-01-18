@@ -40,7 +40,7 @@ const ProjectPage = ({ project }: { project :any }) => {
               <div className="bg-white rounded-lg mt-6">
                   <div className="relative rounded-lg">
                       <div className="flex items-center justify-center flex-col rounded-lg aspect-video min-h-[30rem] w-full object-cover border">
-                          <div className="w-max">
+                          <div className="w-full max-w-full xl:max-w-[900px]">
                               <div className="bg-background border rounded-lg grid grid-cols-4">
                                   <div className="flex flex-col gap-2 p-6 items-start justify-start mb-2 col-span-3">
                                       <div className="text-left text-3xl font-bold mb-2">{project.name}</div>
@@ -57,7 +57,7 @@ const ProjectPage = ({ project }: { project :any }) => {
                                   </Link>
                                   )}
                               </div>
-                              <div className="grid grid-cols-3 gap-4 mt-8">
+                              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8">
                                   <div className="max-w-[300px] bg-gradient-to-br from-primary to-primary/80 w-full rounded-lg p-4">
                                       <div className="text-white text-sm">Team ID</div>
                                       <div className="font-bold text-2xl text-white flex items-center gap-2">

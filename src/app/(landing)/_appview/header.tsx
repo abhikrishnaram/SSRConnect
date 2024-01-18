@@ -6,7 +6,9 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { ChevronRightIcon } from 'lucide-react';
 
-const MENU_ITEMS = [
+import MobileNavBar from '@/app/(landing)/_appview/mobile-nav';
+
+export const MENU_ITEMS = [
   {
     name: 'Home',
     href: '/',
@@ -52,11 +54,11 @@ const Header = ({ scrollEffect = true, variant } : { scrollEffect: boolean, vari
       >
           <div
               className={clsx([
-                'flex flex-wrap p-5 flex-col md:flex-row items-center',
-                !scrolled ? 'justify-between lg:px-16' : 'container mx-auto',
+                'flex flex-wrap p-5 flex-row items-center justify-between',
+                !scrolled ? 'lg:px-16' : 'container mx-auto',
               ])}
           >
-              {scrolled && <Link href="/" className="flex title-font font-bold items-center text-primary mb-4 md:mb-0">
+              {scrolled && <Link href="/" className="flex title-font font-bold items-center text-primary my-2">
                   {/*<svg*/}
                   {/*    xmlns="http://www.w3.org/2000/svg"*/}
                   {/*    fill="none"*/}
@@ -72,37 +74,43 @@ const Header = ({ scrollEffect = true, variant } : { scrollEffect: boolean, vari
                   {/*<span className="ml-3 text-xl">SSR Connect</span>*/}
                   <Image src="/logo.png" alt="logo" width={200} height={60} />
               </Link>}
-              <nav
-                  className={clsx([
-                    'flex gap-6 flex-wrap items-center justify-center mr-6 text-color',
-                    scrolled && 'md:ml-auto',
-                  ])}
-              >
-                  {MENU_ITEMS.map((item) => (
-                      <Link
-                          key={item.name}
-                          href={item.href}
-                          className={clsx([
-                            !scrolled && 'text-white hover:!text-white',
-                            'hover:text-primary group mx-2 cursor-pointer',
-                            'transition-all duration-300 ease-in-out',
-                            item.href === pathname && 'text-primary',
-                          ])}
-                      >
-                          {item.name}
-                          <div
+              {scrolled && <div className="block md:hidden"><MobileNavBar /></div>}
+              <div className="hidden md:flex justify-between flex-grow">
+                  <nav
+                      className={clsx([
+                        'flex gap-6 flex-wrap items-center justify-center mr-6 text-color',
+                        scrolled && 'md:ml-auto',
+                      ])}
+                  >
+                      {MENU_ITEMS.map((item) => (
+                          <Link
+                              key={item.name}
+                              href={item.href}
                               className={clsx([
-                                'h-0.5 w-0 group-hover:w-full bg-white transition-all duration-300 ease-in-out',
-                                item.href === pathname && 'bg-primary',
+                                !scrolled && 'text-white hover:!text-white',
+                                'hover:text-primary group mx-2 cursor-pointer',
+                                'transition-all duration-300 ease-in-out',
+                                item.href === pathname && 'text-primary',
                               ])}
-                          />
-                      </Link>
-                  ))}
-              </nav>
-              <Link href="/dashboard" className="inline-flex items-center justify-between bg-background transition-colors text-primary border-0 py-2 px-4 hover:bg-background/80 rounded-lg text-base font-semibold">
-                  <div>Member Portal</div>
-                  <ChevronRightIcon className="ml-2" size={20} />
-              </Link>
+                          >
+                              {item.name}
+                              <div
+                                  className={clsx([
+                                    'h-0.5 w-0 group-hover:w-full bg-white transition-all duration-300 ease-in-out',
+                                    item.href === pathname && 'bg-primary',
+                                  ])}
+                              />
+                          </Link>
+                      ))}
+                  </nav>
+                  <Link
+                      href="/dashboard"
+                      className="hidden md:inline-flex items-center justify-between bg-background transition-colors text-primary border-0 py-2 px-4 hover:bg-background/80 rounded-lg text-base font-semibold"
+                  >
+                      <div>Member Portal</div>
+                      <ChevronRightIcon className="ml-2" size={20} />
+                  </Link>
+              </div>
           </div>
       </header>
   );

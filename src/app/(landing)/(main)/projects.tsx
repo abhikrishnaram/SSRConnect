@@ -31,7 +31,7 @@ const Projects = () => {
   return (
       <section className="text-gray-600 bg-white body-font w-full">
           <div className="container px-5 py-24 mx-auto flex flex-wrap">
-              <div className="flex flex-col md:grid md:grid-cols-3 gap-8 flex-wrap w-full ">
+              <div className="flex justify-between gap-8 flex-wrap w-full ">
                   <div className="flex flex-col justify-center">
                       <div className="text-3xl font-bold text-primary mb-4">
                           Projects
@@ -46,10 +46,10 @@ const Projects = () => {
                           </Button>
                       </div>
                   </div>
-                  <div className="col-span-2 flex justify-end gap-4">
+                  <div className="col-span-2 flex flex-col items-end max-w-[400px] justify-end gap-4">
                       {PROJECTS.map((project) => (
                           // @ts-ignore
-                          <ProjectCard key={project.teamID} project={project} />
+                          <ProjectCard height="150px" key={project.teamID} project={project} />
                       ))}
                   </div>
               </div>

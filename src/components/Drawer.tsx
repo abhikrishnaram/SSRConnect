@@ -5,9 +5,10 @@ type DrawerProps = {
   children: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
+  maxWidth?: string | number
 };
 
-const Drawer = ({ children, isOpen, onClose }: DrawerProps) => {
+const Drawer = ({ children, maxWidth = 1000, isOpen, onClose }: DrawerProps) => {
   return (
       <main
           className={clsx([
@@ -16,8 +17,9 @@ const Drawer = ({ children, isOpen, onClose }: DrawerProps) => {
           ])}
       >
           <section
+              style={{ maxWidth }}
               className={clsx([
-                'w-screen max-w-lg right-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform',
+                'w-full right-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform',
                 isOpen ? 'translate-x-0' : 'translate-x-full',
               ])}
           >
