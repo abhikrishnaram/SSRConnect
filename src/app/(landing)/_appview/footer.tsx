@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ChevronRightIcon } from 'lucide-react';
 
 const LINKS = [
   {
@@ -42,6 +43,13 @@ const Footer = () => {
                       Student Social Responsibitlity (SSR) is Amrita's flagship community outreach program that
                       exposes students to the realities of life.
                   </p>
+                  <Link
+                      href="/dashboard"
+                      className="mt-4 hidden md:inline-flex items-center justify-between bg-background transition-colors text-primary border py-2 px-4 hover:bg-background/80 rounded-lg text-base font-semibold"
+                  >
+                      <div>Member Portal</div>
+                      <ChevronRightIcon className="ml-2" size={20} />
+                  </Link>
               </div>
               <div className="flex-grow flex flex-wrap md:pl-20 md:-mb-10 md:mt-0 mt-10 md:text-left text-center justify-end">
                   <div className="lg:w-1/4 md:w-1/2 w-full px-4">

@@ -88,7 +88,7 @@ const Header = ({ scrollEffect = true, variant } : { scrollEffect: boolean, vari
                               href={item.href}
                               className={clsx([
                                 !scrolled && 'text-white hover:!text-white',
-                                'hover:text-primary group mx-2 cursor-pointer',
+                                'hover:text-primary group mx-2 cursor-pointer text-base',
                                 'transition-all duration-300 ease-in-out',
                                 item.href === pathname && 'text-primary',
                               ])}

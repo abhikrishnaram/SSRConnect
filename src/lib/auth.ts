@@ -11,7 +11,6 @@ export const authOptions: AuthOptions = {
     signIn: '/auth/signin',
     error: '/auth/signin',
   },
-  secret: process.env.SECRET,
   session: {
     strategy: 'jwt',
   },
