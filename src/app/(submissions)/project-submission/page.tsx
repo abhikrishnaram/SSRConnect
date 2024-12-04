@@ -42,13 +42,13 @@ const submissionSchema = z.object({
   }),
   projectCategory: z.string().min(1, 'Project category is required'),
   otherCategory: z.string().optional(),
-  report: z.instanceof(File).refine(file => file.type === 'application/pdf', 'Only PDF files allowed'),
-  presentation: z.instanceof(File).refine(file =>
+  report: z.any().refine(file => file.type === 'application/pdf', 'Only PDF files allowed'),
+  presentation: z.any().refine(file =>
     ['application/pdf', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'].includes(file.type),
   'Only PDF or PPT files allowed',
   ),
-  video: z.instanceof(File).refine(file => file.type.startsWith('video/'), 'Only video files allowed'),
-  poster: z.instanceof(File).refine(file => file.type.startsWith('image/'), 'Only image files allowed'),
+  video: z.any().refine(file => file.type.startsWith('video/'), 'Only video files allowed'),
+  poster: z.any().refine(file => file.type.startsWith('image/'), 'Only image files allowed'),
 });
 
 const ProjectSubmissionForm = () => {
