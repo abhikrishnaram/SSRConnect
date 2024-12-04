@@ -2,7 +2,6 @@
 import React from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 import Button from '@/components/button';
@@ -11,8 +10,6 @@ import { createProject } from '@/lib/actions/admin/quickActions';
 
 
 const CreateProjectPage = () => {
-    
-  const router = useRouter();
 
   const formAction = (data: FormData) => {
     createProject(JSON.stringify(data))
@@ -22,7 +19,7 @@ const CreateProjectPage = () => {
           return;
         }
         toast.success('Project created successfully. \n Taking you to the project page...');
-        router.push(`/p/${res?.slug}`);
+        // router.push(`/p/${res?.code}`);
       }).catch((err: any) => {
         toast.error('Something went wrong');
         console.error(err);
@@ -53,6 +50,11 @@ const CreateProjectPage = () => {
                           required
                           label="Title"
                           name="name"
+                      />
+                      <InputField
+                          required
+                          label="Team ID"
+                          name="code"
                       />
                       <div className="flex flex-col gap-2">
                           <label

@@ -6,7 +6,6 @@ import React from 'react';
 import ManageWrapper from '@/components/manage-page';
 import prisma from '@/lib/db/prisma';
 import ManageTeamTable from '@/app/(console)/(private)/manage/teams/table';
-import { TTeam } from '@/types/team';
 
 const BREADCRUMBS = [
   {
@@ -30,9 +29,8 @@ const getTeams = async () => {
 
 const ManageTeamsPage = async () => {
 
-  const teams = await getTeams() as TTeam[];
-  console.log(teams);
-  
+  const teams = await getTeams() as any[];
+
   return (
       <ManageWrapper breadcrumbs={BREADCRUMBS} title="Manage Users" className="flex">
           <div className="grid grid-cols-3 md:grid-cols-4 gap-4 my-10 p-4 bg-white rounded-lg shadow-xl shadow-gray-200 min-h-[36rem] w-full">

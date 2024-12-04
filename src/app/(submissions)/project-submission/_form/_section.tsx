@@ -1,13 +1,12 @@
 import React from 'react';
 import { Control, Controller, DeepRequired, FieldErrorsImpl, FieldValues, GlobalError } from 'react-hook-form';
 import { LucideIcon } from 'lucide-react';
-import { ControllerRenderProps } from 'react-hook-form/dist/types/controller';
-import { FieldPath } from 'react-hook-form/dist/types';
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { TProjectSubmissionForm } from '@/app/(submissions)/project-submission/form-type';
 
 export interface IFormSection {
-  control?: Control<FieldValues, any>
+  control?: Control<TProjectSubmissionForm, any>
   errors?: Partial<FieldErrorsImpl<DeepRequired<FieldValues>>> & { root?: Record<string, GlobalError> & GlobalError }
 }
 
@@ -22,7 +21,7 @@ type FormSectionProps = {
     label?: string
     placeholder?: string
     renderer: ({ field, fieldState, formState } : {
-      field: ControllerRenderProps<FieldValues, FieldPath<FieldValues>>
+      field: any
       fieldState: any
       formState: any
     }) => React.ReactElement

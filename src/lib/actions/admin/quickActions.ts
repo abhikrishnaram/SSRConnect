@@ -31,7 +31,7 @@ export async function addUser(body: string, type: 'MENTOR' | 'STUDENT') {
         password: data.password ? hashedPassword : '',
         isStaff: type === 'MENTOR',
       },
-    });
+    }).then((res) => res);
     return { id: user?.id };
   } catch (error) {
     console.error(error);
@@ -42,12 +42,13 @@ export async function addUser(body: string, type: 'MENTOR' | 'STUDENT') {
 type CreateProjectProps = {
   name: string;
   description: string;
+  code: string;
 };
 
 
 export async function createProject(data: string) {
 
-  const { name, description } = JSON.parse(data) as CreateProjectProps;
+  const { name, description, code } = JSON.parse(data) as CreateProjectProps;
 
   const session = await auth();
   const user = session?.user;
@@ -57,10 +58,8 @@ export async function createProject(data: string) {
     data: {
       name,
       description,
-      slug: name.toLowerCase().replace(' ', '-'),
-      authorId: user?.id,
-      code: Math.random().toString(36).substring(2, 8).toUpperCase(),
+      code: code.replace(/[\s\-_]/g, ''),
     },
-  });
-  return { id: project?.id, slug: project?.slug };
+  }).then((res) => res);
+  return { id: project?.id, slug: project?.code };
 }

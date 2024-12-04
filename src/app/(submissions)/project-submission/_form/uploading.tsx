@@ -23,11 +23,11 @@ const ProjectSubmissionUploading = ({ isOpen, uploadProgress, currentUploadFile 
                               <div className="flex justify-between text-sm mb-1">
                                   <span className="capitalize">{file}</span>
                                   <span>
-                                      {progress}
+                                      {progress as number}
                                       %
                                   </span>
                               </div>
-                              <Progress value={progress} className="h-2" />
+                              <Progress value={progress as number} className="h-2" />
                           </div>
                       ))}
                   </div>

@@ -13,10 +13,10 @@ type TError = {
 
 
 
-export async function getProject(slug: string) : Promise<Project | TError> {
+export async function getProject(code: string) : Promise<Project | TError> {
   try {
     const project = await prisma.project.findUnique({
-      where: { slug },
+      where: { code },
       include: {
         Team: true,
       },
@@ -32,7 +32,7 @@ export async function getProject(slug: string) : Promise<Project | TError> {
 export async function getProjectByID(id: string) : Promise<Project | TError> {
   try {
     const project = await prisma.project.findUnique({
-      where: { id: parseInt(id), isPublished: true },
+      where: { id: parseInt(id), isAccepted: true },
       include: {
         Team: {
           include: {

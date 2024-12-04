@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import { MapPinIcon } from 'lucide-react';
 
@@ -26,7 +27,7 @@ const LocationFieldsSection = ({ control, projectLocationType, errors }: Locatio
           {
             name: 'projectLocation.type',
             renderer: ({ field }) => (
-                <FormItem title="Location Type" error={errors?.projectLocation?.type}>
+                <FormItem title="Location Type" error={errors?.projectLocation}>
                     <Select onValueChange={field.onChange} value={field.value}>
                         <SelectTrigger>
                             <SelectValue placeholder="Select location type" />
@@ -43,7 +44,7 @@ const LocationFieldsSection = ({ control, projectLocationType, errors }: Locatio
             name: 'projectLocation.location',
             isHidden: projectLocationType === 'online',
             renderer: ({ field }) => (
-                <FormItem title="Location" error={errors?.projectLocation?.location}>
+                <FormItem title="Location" error={errors?.projectLocation}>
                     <Input {...field} placeholder="Enter location" />
                 </FormItem>
             ),
@@ -52,7 +53,7 @@ const LocationFieldsSection = ({ control, projectLocationType, errors }: Locatio
             name: 'projectLocation.city',
             isHidden: projectLocationType === 'online',
             renderer: ({ field }) => (
-                <FormItem title="City" error={errors?.projectLocation?.city}>
+                <FormItem title="City" error={errors?.projectLocation}>
                     <Input {...field} placeholder="Enter city" />
                 </FormItem>
             ),
@@ -61,7 +62,7 @@ const LocationFieldsSection = ({ control, projectLocationType, errors }: Locatio
             name: 'projectLocation.state',
             isHidden: projectLocationType === 'online',
             renderer: ({ field }) => (
-                <FormItem title="State" error={errors?.projectLocation?.state}>
+                <FormItem title="State" error={errors?.projectLocation}>
                     <Select onValueChange={field.onChange} value={field.value}>
                         <SelectTrigger>
                             <SelectValue placeholder="Select state" />

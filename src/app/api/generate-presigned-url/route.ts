@@ -16,9 +16,6 @@ const s3Client = new S3Client({
 const BUCKET_NAME = process.env.CF_R2_STORAGE_BUCKET_NAME;
 
 export async function POST(req: Request) {
-  if(req.method !== 'POST') {
-    return new Response({ message: 'Method not allowed' }, { status: 405 });
-  }
 
   const { fileName, fileType } = await req.json();
 

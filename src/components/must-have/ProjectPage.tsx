@@ -19,8 +19,8 @@ const ProjectPage = ({ project }: { project :any }) => {
                           Projects
                       </Link>
                       <span>/</span>
-                      <Link href={`/p/${project?.slug}`}>
-                          <span className="font-semibold uppercase">{project.slug}</span>
+                      <Link href={`/p/${project?.code}`}>
+                          <span className="font-semibold uppercase">{project.code}</span>
                       </Link>
                   </div>
                   <div className="flex gap-2">
@@ -47,7 +47,7 @@ const ProjectPage = ({ project }: { project :any }) => {
                                       <div className="flex justify-center items-center text-xs">
                                           Team 
                                           {' '}
-                                          {project?.slug}
+                                          {project?.code}
                                       </div>
                                   </div>
                                   {project?.link && (

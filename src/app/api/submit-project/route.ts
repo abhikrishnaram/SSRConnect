@@ -42,10 +42,10 @@ export async function POST(req: Request) {
     });
 
     if(!team)
-      return new Response({ error: 'Team not found' }, { status: 404 });
+      return new Response(JSON.stringify({ error: 'Team not found' }), { status: 404 });
     
     if(team.project)
-      return new Response({ error: 'The Project has already been submitted for this team.' }, { status: 400 });
+      return new Response(JSON.stringify({ error: 'The Project has already been submitted for this team.' }), { status: 400 });
 
     const meta: { location: any, category: string | null } = {
       location: validatedData.projectLocation, 
@@ -147,9 +147,9 @@ export async function GET(req: Request) {
     });
 
     if(!project) {
-      return new Response({
+      return new Response(JSON.stringify({
         error: 'Project not found',
-      }, { status: 404 });
+      }), { status: 404 });
     }
 
     return NextResponse.json(project);

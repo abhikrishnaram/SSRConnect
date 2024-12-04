@@ -21,6 +21,7 @@ import Logo from '@/components/Logo';
 import ProjectSubmissionConfirm from '@/app/(submissions)/project-submission/_form/confirm';
 import ProjectSubmissionUploading from '@/app/(submissions)/project-submission/_form/uploading';
 import ProjectSubmissionSuccess from '@/app/(submissions)/project-submission/_form/success';
+import { TProjectSubmissionForm } from '@/app/(submissions)/project-submission/form-type';
 
 const generateTeamIDs = () => {
   const currentYear = new Date().getFullYear().toString().slice(-2);
@@ -48,10 +49,6 @@ const submissionSchema = z.object({
   ),
   video: z.instanceof(File).refine(file => file.type.startsWith('video/'), 'Only video files allowed'),
   poster: z.instanceof(File).refine(file => file.type.startsWith('image/'), 'Only image files allowed'),
-  photos: z
-    .instanceof(FileList)
-    .refine(files => Array.from(files).every(file => file?.type?.startsWith('image/')), 'Only image files allowed')
-    .optional(),
 });
 
 const ProjectSubmissionForm = () => {
@@ -60,9 +57,9 @@ const ProjectSubmissionForm = () => {
   const [isUploading, setIsUploading] = useState<0 | 1 | 8 | 9>(0);
 
   const [team, setTeam] = useState(null);
-  const [uploadProgress, setUploadProgress] = useState({});
   const [currentUploadFile, setCurrentUploadFile] = useState('');
   const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState({});
 
   const {
     control,
@@ -71,20 +68,32 @@ const ProjectSubmissionForm = () => {
     getValues,
     setError,
     formState: { errors },
-  } = useForm({
+  } = useForm<TProjectSubmissionForm>({
     resolver: zodResolver(submissionSchema),
     defaultValues: {
+      teamId: '',
+      projectTitle: '',
+      projectDescription: '',
+      projectCategory: '',
+      otherCategory: '',
       projectLocation: {
         type: 'online',
         location: '',
         city: '',
         state: '',
       },
-      photoGallery: [],
+      photos: [],
+      report: null,
+      video: null,
+      poster: null,
+      presentation: null,
     },
   });
 
+  // @ts-ignore
   const projectLocationType = watch('projectLocation.type');
+
+  // @ts-ignore
   const projectCategory = watch('projectCategory');
 
   const uploadFile = async (file, key, teamId) => {

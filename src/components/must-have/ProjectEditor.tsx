@@ -31,11 +31,11 @@ const ProjectEditor = ({ project: init }: { project: Partial<Project> }) => {
                       Projects
                   </Link>
                   <span>/</span>
-                  <Link href={`/p/${project?.slug}`}>
-                      <span className="font-semibold uppercase">{project.slug}</span>
+                  <Link href={`/p/${project?.code}`}>
+                      <span className="font-semibold uppercase">{project.code}</span>
                   </Link>
                   <span>/</span>
-                  <Link href={`/p/${project?.slug}/edit`}>
+                  <Link href={`/p/${project?.code}/edit`}>
                       <span className="font-semibold">Edit</span>
                   </Link>
               </div>

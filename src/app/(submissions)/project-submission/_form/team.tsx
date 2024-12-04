@@ -8,7 +8,10 @@ import FormSection, { IFormSection } from '@/app/(submissions)/project-submissio
 import FormItem from '@/app/(submissions)/project-submission/_form/_item';
 
 type TeamFieldsSectionProps = {
-  teamIDs: string[]
+  teamIDs: string[],
+  team: any,
+  setTeam: any,
+  onTeamSelect: any,
 } & IFormSection;
 
 
