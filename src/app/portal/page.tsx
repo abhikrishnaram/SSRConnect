@@ -1,7 +1,8 @@
-import { Card } from '@nextui-org/react';
 import Link from 'next/link';
 
 import Logo from '@/components/Logo';
+import { Card } from '@/components/ui/card';
+
 
 const PortalPage = () => {
   // Mocked data for demonstration
@@ -23,7 +24,7 @@ const PortalPage = () => {
                       <h2 className="text-2xl text-center text-gray-800 opacity-60 mb-6">Students Corner</h2>
                       <div className="flex gap-4">
                           {data.showProposalSubmission && (
-                              <Link href="/proposal-submission">
+                              <Link href="/proposal-submission" prefetch={false}>
                                   <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer rounded">
                                       <h3 className="text-xl font-semibold text-primary">Proposal Submission</h3>
                                       <p className="text-gray-500">Submit your project proposal for approval.</p>
@@ -31,7 +32,7 @@ const PortalPage = () => {
                               </Link>
                           )}
                           {data.showProjectSubmission && (
-                              <Link href="/project-submission">
+                              <Link href="/project-submission" prefetch={false}>
                                   <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer rounded">
                                       <h3 className="text-xl font-semibold text-primary">Project Submission</h3>
                                       <p className="text-gray-500">Upload and share your completed project.</p>
@@ -54,14 +55,14 @@ const PortalPage = () => {
                       <h2 className="text-2xl text-center text-gray-800 opacity-60 mb-6">Instructors Corner</h2>
                       <div className="flex gap-4">
                           {data.isLoggedIn ? (
-                              <Link href="/dashboard">
+                              <Link href="/dashboard" prefetch={false}>
                                   <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer rounded">
                                       <h3 className="text-xl font-semibold text-primary">Dashboard</h3>
                                       <p className="text-gray-500">View and manage project submissions by students.</p>
                                   </Card>
                               </Link>
                           ) : (
-                              <Link href="/auth/signin">
+                              <Link href="/auth/signin" prefetch={false}>
                                   <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer rounded">
                                       <h3 className="text-lg font-semibold text-primary">Login</h3>
                                       <p className="text-gray-500">Please login to access the instructor's corner.</p>
