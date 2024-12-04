@@ -12,19 +12,14 @@ export const GET = async (req: NextRequest) => {
     select: {
       id: true,
       name: true,
-      description: true,
-      link: true,
-      slug: true,
       code: true,
+      description: true,
     },
     where: {
       name: {
         contains: query as string,
         mode: 'insensitive',
       },
-    },
-    orderBy: {
-      id: 'desc',
     },
     skip: cursor !== '' ? 1 : 0,
     cursor: cursorObj,

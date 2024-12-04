@@ -70,20 +70,22 @@ const load = async () => {
     for(const key of allTeams as string[]) {
       await prisma.project.create({
         data: {
-          code: key,
           name: DATA[key].title,
-          slug: key,
-          isPublished: true,
+          code: key,
+
           link: DATA[key].folder_url,
-          authorId: admin.id,
           meta: {
             year: key.substring(3, 7),
             date: DATA[key].date,
+            
             place: DATA[key].place,
             district: DATA[key].district,
             state: DATA[key].state,
+
             mentor: DATA[key].mentor,
           },
+
+          isAccepted: true,
         },
       });
     }

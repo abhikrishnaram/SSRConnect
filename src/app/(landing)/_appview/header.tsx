@@ -104,7 +104,7 @@ const Header = ({ scrollEffect = true, variant } : { scrollEffect: boolean, vari
                       ))}
                   </nav>
                   <Link
-                      href="/dashboard"
+                      href="/portal"
                       className="hidden md:inline-flex items-center justify-between bg-background transition-colors text-primary border-0 py-2 px-4 hover:bg-background/80 rounded-lg text-base font-semibold"
                   >
                       <div>Member Portal</div>

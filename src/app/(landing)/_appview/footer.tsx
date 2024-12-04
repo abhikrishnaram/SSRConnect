@@ -44,7 +44,7 @@ const Footer = () => {
                       exposes students to the realities of life.
                   </p>
                   <Link
-                      href="/dashboard"
+                      href="/portal"
                       className="mt-4 hidden md:inline-flex items-center justify-between bg-background transition-colors text-primary border py-2 px-4 hover:bg-background/80 rounded-lg text-base font-semibold"
                   >
                       <div>Member Portal</div>

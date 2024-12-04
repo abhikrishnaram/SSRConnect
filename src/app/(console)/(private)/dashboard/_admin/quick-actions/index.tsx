@@ -10,7 +10,7 @@ import AddProjectForm from './add-project';
 
 import Drawer from '@/components/Drawer';
 
-const QuickActions = () => {
+const Index = () => {
 
   const [open, setOpen] = useState<0 | 1 | 2 | 3 | 4>(0);
   const handleClose = () => setOpen(0);
@@ -98,4 +98,4 @@ const QuickActions = () => {
   );
 };
 
-export default QuickActions;
+export default Index;

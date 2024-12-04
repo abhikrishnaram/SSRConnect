@@ -35,7 +35,7 @@ const MobileNavBar = () => {
                       ))}
                   </div>
                   <Link
-                      href="/dashboard"
+                      href="/portal"
                       className="inline-flex items-center justify-between bg-primary/90 transition-colors text-white border-0 py-3 px-4 hover:bg-primary rounded-lg text-base font-semibold"
                   >
                       <div>Member Portal</div>

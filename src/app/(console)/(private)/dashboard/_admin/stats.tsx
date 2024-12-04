@@ -1,4 +1,4 @@
-import QuickActions from './quick-actions';
+import Index from './quick-actions';
 
 const STATS = [
   { label: 'Teams', value: 10 },
@@ -28,7 +28,7 @@ const StatsSections = () => {
                   ))}
               </div>
           </div>
-          <QuickActions />
+          <Index />
       </div>
   );
 };

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { FileTextIcon, PackageIcon, UserIcon, UsersIcon } from 'lucide-react';
 
-import QuickActions from '../_admin/quick-actions';
+import Index from '../_admin/quick-actions';
 
 const STATS = [
   {
@@ -81,7 +81,7 @@ const MentorDashboard = () => {
                       ))}
                   </div>
               </div>
-              <QuickActions />
+              <Index />
           </div>
           <div className="mt-4">
               <div className="text-xl text-gray-500 font-semibold mb-2">Portals</div>
