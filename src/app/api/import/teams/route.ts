@@ -22,36 +22,50 @@ export async function POST(req: Request) {
     const teams = z.array(TeamImportSchema).parse(body);
 
     // Start a transaction to ensure data integrity
-    const importResult = await prisma.$transaction(async (tx) => {
-      const importedTeams = [];
-      const existingTeams = [];
+    const importedTeams = [];
+    const existingTeams = [];
 
-      for(const teamData of teams) {
-        // Check if team already exists
-        const existingTeam = await tx.team.findUnique({
-          where: { code: teamData.code },
-        });
+    // Fetch all existing team codes in one query
+    const existingTeamCodes = new Set(
+      (await prisma.team.findMany({
+        where: {
+          code: { in: teams.map((t) => t.code) },
+        },
+        select: { code: true },
+      })).map((t) => t.code),
+    );
 
-        if(existingTeam) {
-          existingTeams.push({
-            code: teamData.code,
-            reason: 'Team already exists',
-          });
-        } else {
-          // Create team only if it doesn't exist
-          const newTeam = await tx.team.create({
-            data: {
-              code: teamData.code,
-              members: teamData.members as any, // Using JSON type
-            },
-          });
+    // Filter teams to create
+    const teamsToCreate = teams.filter(
+      (teamData) => !existingTeamCodes.has(teamData.code),
+    );
 
-          importedTeams.push(newTeam);
-        }
-      }
+    // Create teams in bulk
+    if(teamsToCreate.length > 0) {
+      const createdTeams = await prisma.team.createMany({
+        data: teamsToCreate.map((teamData) => ({
+          code: teamData.code,
+          members: teamData.members as any,
+        })),
+        skipDuplicates: true, // Ensures duplicates are skipped
+      }).then(r => r);
 
-      return { importedTeams, existingTeams };
-    });
+      importedTeams.push(createdTeams);
+    }
+
+    // Add existing teams to the result
+    existingTeams.push(
+      ...teams
+        .filter((teamData) => existingTeamCodes.has(teamData.code))
+        .map((teamData) => ({
+          code: teamData.code,
+          reason: 'Team already exists',
+        })),
+    );
+
+    // Return the results
+    const importResult = { importedTeams, existingTeams };
+
 
     return new Response(JSON.stringify({
       message: 'Team import process completed',

@@ -20,8 +20,6 @@ const FileFieldsSection = ({ control, errors, uploadProgress }: FileFieldsSectio
                 onChange={(e) => {
                   if(fileType === 'photos') onChange(e.target.files);
                   else onChange(e.target.files?.[0]);
-
-                  console.log(e.target.files, fileType, typeof e.target.files);
                 }}
                 accept={fileType === 'report' ? '.pdf' :
                   fileType === 'presentation' ? '.pdf,.ppt,.pptx' :
@@ -30,6 +28,7 @@ const FileFieldsSection = ({ control, errors, uploadProgress }: FileFieldsSectio
                     }
                 multiple={fileType === 'photos'}
                 className="cursor-pointer"
+                required
             />
             {uploadProgress[fileType] > 0 && (
                 <Progress value={uploadProgress[fileType]} className="h-2" /> 
