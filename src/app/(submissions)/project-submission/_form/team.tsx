@@ -79,7 +79,7 @@ const TeamFieldsSection = ({ control, teamIDs, team, setTeam, onTeamSelect, erro
                       </div>
                   )}
                   {team && (
-                      <div className="grid grid-cols-3 gap-3 w-full">
+                      <div className="grid md:grid-cols-3 gap-3 w-full">
                           <div className="bg-gradient-to-br from-primary to-blue-800 w-full rounded-lg p-4">
                               <div className="text-white text-sm">Team ID</div>
                               <div className="font-bold text-2xl text-white flex items-center gap-2">
