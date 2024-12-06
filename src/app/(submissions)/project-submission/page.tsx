@@ -33,7 +33,7 @@ const generateTeamIDs = () => {
 const submissionSchema = z.object({
   teamId: z.string().min(1, 'Team ID is required'),
   projectTitle: z.string().min(3, 'Project title must be at least 3 characters'),
-  projectDescription: z.string().min(10, 'Project description must be at least 10 characters'),
+  // projectDescription: z.string().min(10, 'Project description must be at least 10 characters').optional(),
   projectLocation: z.object({
     type: z.enum(['online', 'offline']),
     location: z.string().optional(),
@@ -212,6 +212,7 @@ const ProjectSubmissionForm = () => {
                   <div className="flex items-center justify-center">
                       <Button
                           type="submit"
+                          disabled={false}
                           className="w-full bg-primary hover:bg-primary/90 max-w-[300px] h-16 font-bold"
                       >
                           Submit Project

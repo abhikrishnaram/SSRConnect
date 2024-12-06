@@ -14,14 +14,30 @@ export const GET = async (req: NextRequest) => {
       name: true,
       code: true,
       description: true,
+      createdAt: true,
     },
     where: {
       name: {
         contains: query as string,
         mode: 'insensitive',
       },
+      OR: [
+        {
+          code: {
+            contains: query as string,
+            mode: 'insensitive',
+          },
+        },
+      ],
     },
-    skip: cursor !== '' ? 1 : 0,
+    orderBy: [
+      {
+        createdAt: 'desc',
+      },
+      {
+        id: 'desc',
+      },
+    ],
     cursor: cursorObj,
     take: limit,
   });

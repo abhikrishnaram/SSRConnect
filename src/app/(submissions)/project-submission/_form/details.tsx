@@ -3,7 +3,6 @@ import { FileText } from 'lucide-react';
 
 import FormSection, { IFormSection } from '@/app/(submissions)/project-submission/_form/_section';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import FormItem from '@/app/(submissions)/project-submission/_form/_item';
 
@@ -12,15 +11,11 @@ type DetailsFieldsSectionProps = {
 } & IFormSection;
 
 const CATEGORIES = [
+  'Drug Awareness',
+  'Cybersecurity Awareness',
   'Health and Wellbeing',
-  'Awareness Campaigns',
-  'Indian History and Heritage',
-  'Amrita Talks on Various Topics',
-  'Financial Literacy',
-  '21st Century Values',
-  'Student Mentorship',
-  'Student Clubs',
-  'Women Empowerment',
+  'Indian Culture and Heritage',
+  'Skill Building',
   'Other',
 ];
 
@@ -39,14 +34,14 @@ const DetailsFieldsSection = ({ control, errors, projectCategory }: DetailsField
                 </FormItem>
             ),
           },
-          {
-            name: 'projectDescription',
-            renderer: ({ field }) => (
-                <FormItem title="Project Description" error={errors?.projectDescription} titleClassname="md:mb-16">
-                    <Textarea {...field} placeholder="Describe your project" className="h-32" />
-                </FormItem>
-            ),
-          },
+          // {
+          //   name: 'projectDescription',
+          //   renderer: ({ field }) => (
+          //       <FormItem title="Project Description" error={errors?.projectDescription} titleClassname="md:mb-16">
+          //           <Textarea {...field} placeholder="Describe your project" className="h-32" />
+          //       </FormItem>
+          //   ),
+          // },
           {
             name: 'projectCategory',
             renderer: ({ field }) => (

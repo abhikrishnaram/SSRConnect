@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     };
     let themeId = null;
     
-    if(!validatedData.projectCategory) {
+    if(validatedData.projectCategory === 'Other') {
       meta.category = validatedData.otherCategory;
     }
     

@@ -83,7 +83,7 @@ const TeamFieldsSection = ({ control, teamIDs, team, setTeam, onTeamSelect, erro
                           <div className="bg-gradient-to-br from-primary to-blue-800 w-full rounded-lg p-4">
                               <div className="text-white text-sm">Team ID</div>
                               <div className="font-bold text-2xl text-white flex items-center gap-2">
-                                  {team?.code}
+                                  {team?.code.slice(0, -3) + '-' + team?.code?.slice(-3)}
                               </div>
                           </div>
                           {team?.mentor && (

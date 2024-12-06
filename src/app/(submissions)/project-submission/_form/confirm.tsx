@@ -18,7 +18,7 @@ const ProjectSubmissionConfirm = ({ isOpen, onCancel, team, onNext }) => {
               </div>
               <div>
                   <div className="text-lg font-bold">Team ID:</div>
-                  <div className="text-gray-700">{team?.code}</div>
+                  <div className="text-gray-700">{team?.code.slice(0, -3) + '-' + team?.code.slice(-3)}</div>
               </div>
               {team?.members && (
               <div>
