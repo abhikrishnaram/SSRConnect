@@ -23,9 +23,9 @@ const FileFieldsSection = ({ control, errors, uploadProgress }: FileFieldsSectio
                 }}
                 accept={fileType === 'report' ? '.pdf' :
                   fileType === 'presentation' ? '.pdf,.ppt,.pptx' :
-                    fileType === 'video' ? 'video/*' :
+                    fileType === 'video' ? 'video/mp4' :
                       'image/*'
-                    }
+                }
                 multiple={fileType === 'photos'}
                 className="cursor-pointer"
                 required

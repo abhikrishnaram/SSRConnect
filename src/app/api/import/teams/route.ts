@@ -1,6 +1,8 @@
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 
+import auth from '@auth';
+
 // Prisma client instance
 const prisma = new PrismaClient();
 
@@ -16,6 +18,11 @@ const TeamImportSchema = z.object({
 
 export async function POST(req: Request) {
   try {
+    const session = await auth();
+    const user = session?.user;
+
+    if(!user || !user?.isAdmin) return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401 });
+
     const body = await req.json();
 
     // Validate input using Zod

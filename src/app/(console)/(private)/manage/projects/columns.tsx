@@ -1,26 +1,9 @@
 'use client';
 import { ColumnDef } from '@tanstack/react-table';
-import clsx from 'clsx';
 
-export type Project = {
-  name: string
-  code: string
-  description: string
-  isAccepted: boolean
-  link?: string
-  meta: object
+import { TProject } from '@/types/project';
 
-  video: string
-  report: string
-  poster: string
-  photos: string[]
-  presentation: string
-
-  theme: { name: string }
-  team: { members: object, mentor: object }
-};
-
-export const columns: ColumnDef<Project, Project>[] = [
+export const columns: ColumnDef<TProject, TProject>[] = [
   {
     accessorKey: 'name',
     header: 'Project Name',
@@ -31,18 +14,18 @@ export const columns: ColumnDef<Project, Project>[] = [
     accessorKey: 'code',
     header: 'Team Code',
   },
-  {
-    accessorKey: 'isAccepted',
-    header: 'Published',
-    cell: (data) => {
-      // @ts-ignore
-      const className = data?.data?.isAccepted ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600';
-      return (
-          <div className={clsx('w-max rounded-full px-2 py-0.5 text-sm', className)}>
-              {/* @ts-ignore */}
-              {data?.data?.isAccepted ? 'Published' : 'Not Published'}
-          </div>
-      );
-    },
-  },
+  // {
+  //   accessorKey: 'isAccepted',
+  //   header: 'Published',
+  //   cell: (data) => {
+  //     @ts-ignore
+  // const className = data?.data?.isAccepted ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600';
+  // return (
+  //     <div className={clsx('w-max rounded-full px-2 py-0.5 text-sm', className)}>
+  //          @ts-ignore
+  // {data?.data?.isAccepted ? 'Published' : 'Not Published'}
+  // </div>
+  // );
+  // },
+  // },
 ];

@@ -19,16 +19,21 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import Button from '@/components/button';
+import Spinner from '@/components/spinner';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
+  onSelect: (data: TData) => void;
 }
 
 export default function ManageProjectsTable<TData, TValue>({
   columns,
+  onSelect,
 }: DataTableProps<TData, TValue>) {
-  const [tableData, setTableData] = useState<TData[]>([]);
 
+  const [tableData, setTableData] = useState<TData[]>([]);
+  const [loading, setLoading] = useState(true);
+  
   const searchParams = useSearchParams();
   const query = searchParams.get('query')?.toString() ?? '';
 
@@ -45,6 +50,7 @@ export default function ManageProjectsTable<TData, TValue>({
         '/api/get/projects?cursor=' + (pageParam || '') + '&query=' + query,
       );
       const data = await res.json();
+      setLoading(false);
       return data;
     },
     {
@@ -91,6 +97,7 @@ export default function ManageProjectsTable<TData, TValue>({
                         <TableRow
                             key={row.id}
                             data-state={row.getIsSelected() && 'selected'}
+                            onClick={() => onSelect(row.original)}
                         >
                             {row.getVisibleCells().map((cell) => (
                                 <TableCell key={cell.id}>
@@ -105,7 +112,10 @@ export default function ManageProjectsTable<TData, TValue>({
                   ) : (
                       <TableRow>
                           <TableCell colSpan={columns.length} className="h-24 text-center">
-                              No results.
+                              <div className="flex items-center justify-center flex-col">
+                                  {loading && <Spinner />}
+                                  {loading ? 'Loading projects...' : 'No projects found'}
+                              </div>
                           </TableCell>
                       </TableRow>
                   )}

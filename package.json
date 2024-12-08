@@ -68,6 +68,7 @@
     "tailwindcss-animate": "^1.0.7",
     "use-debounce": "^10.0.0",
     "validator": "^13.11.0",
+    "yet-another-react-lightbox": "^3.21.7",
     "z": "^1.0.1",
     "zod": "^3.22.4"
   },

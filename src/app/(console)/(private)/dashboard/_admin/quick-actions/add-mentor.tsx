@@ -51,10 +51,13 @@ const AddMentorForm = ({ handleClose }: { handleClose: () => void }) => {
               <TextField
                   variant="outlined"
                   label="Email"
+                  name="email"
               />
               <TextField
                   variant="outlined"
                   label="Password"
+                  type="password"
+                  name="password"
               />
               
               <Button variant="primary" type="submit" className="mt-2">

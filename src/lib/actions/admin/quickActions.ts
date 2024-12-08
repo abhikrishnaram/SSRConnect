@@ -13,7 +13,7 @@ type AddUserProps = {
 };
 
 
-export async function addUser(body: string, type: 'MENTOR' | 'STUDENT') {
+export async function addUser(body: string, type: 'MENTOR') {
 
   const data = JSON.parse(body) as AddUserProps;
 

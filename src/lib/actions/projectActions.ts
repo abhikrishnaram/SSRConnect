@@ -4,6 +4,7 @@ import { Project } from '@prisma/client';
 import { notFound } from 'next/navigation';
 
 import prisma from '@/lib/db/prisma';
+import auth from '@auth';
 
 type TError = {
   error: any;
@@ -19,8 +20,19 @@ export async function getProject(code: string) : Promise<Project | TError> {
       where: { code },
       include: {
         Team: true,
+        theme: true,
       },
-    });
+    }).then(r => r);
+
+    if(!project.isAccepted) {
+      const session = await auth();
+      const user = session?.user;
+
+      if(!user || !user?.isStaff) {
+        notFound();
+      }
+    }
+    
     if(!project) notFound();
     return project;
   } catch (e) {

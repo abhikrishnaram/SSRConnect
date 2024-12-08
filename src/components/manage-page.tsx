@@ -15,7 +15,7 @@ type TManageWrapper = {
 
 const ManageWrapper = ({ breadcrumbs, title, children, className = '' } : TManageWrapper) => {
   return (
-      <div className="p-4 flex-grow flex flex-col">
+      <div className="p-4 flex-grow flex flex-col container mx-auto">
           <div>
               <div className="text-base mb-2 font-medium text-gray-900">
                   {breadcrumbs.map((breadcrumb, index) => (
@@ -31,7 +31,7 @@ const ManageWrapper = ({ breadcrumbs, title, children, className = '' } : TManag
                   {title}
               </div>
           </div>
-          <div className={`${clsx(['flex-grow', className])}`}>
+          <div className={clsx(['flex-grow', className])}>
               {children}
           </div>
       </div>

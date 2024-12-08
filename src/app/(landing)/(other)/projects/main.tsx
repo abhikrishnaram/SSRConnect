@@ -80,15 +80,13 @@ const ProjectsMain = ({ initialData }: any) => {
   }
   
   return (
-      <>
-          <div className="min-w-[300px] max-w-[350px] bg-priary/10 w-full p-8">
-              <div className="flex flex-col items-start h-full mt-4">
-                  <div className="text font-bold text-primary mb-6">Search Projects</div>
+      <div className="overflow-auto w-full" ref={scrollRef}>
+          <div className="mx-auto container">
+              <div className="pt-12" />
+              <div className="max-w-md px-4 mb-12">
+                  <div className="text font-bold text-primary mb-3">Search Projects</div>
                   <ProjectsSidebar handleSearch={handleSearch} filter={filter} setFilter={setFilter} />
               </div>
-          </div>
-          <div className="overflow-auto" ref={scrollRef}>
-              <div className="pt-12" />
               <div className="grid md:grid-cols-2 2xl:grid-cols-3 justify-center items-center px-4 gap-6">
                   {data && data?.pages?.map((page) => {
                     return (
@@ -129,7 +127,7 @@ const ProjectsMain = ({ initialData }: any) => {
                   </button>
               </div>
           </div>
-      </>
+      </div>
   );
 };
 

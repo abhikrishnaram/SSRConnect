@@ -9,13 +9,6 @@ export const GET = async (req: NextRequest) => {
   const cursorObj = cursor === '' ? undefined : { id: parseInt(cursor as string, 10) };
 
   const projects = await prisma.project.findMany({
-    select: {
-      id: true,
-      name: true,
-      code: true,
-      description: true,
-      createdAt: true,
-    },
     where: {
       name: {
         contains: query as string,
@@ -30,6 +23,7 @@ export const GET = async (req: NextRequest) => {
         },
       ],
     },
+    include: { theme: true },
     orderBy: [
       {
         createdAt: 'desc',

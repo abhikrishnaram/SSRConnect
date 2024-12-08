@@ -154,8 +154,8 @@ const ProjectSubmissionForm = () => {
       if(data.photos?.length > 0) {
         const photoResults = await Promise.all(
           Array.from(data.photos).map((file, index) => {
-            setCurrentUploadFile(`photoGallery-${index}`);
-            return uploadFile(file, `photoGallery-${index}`, data.teamId);
+            setCurrentUploadFile(`photo-${index}`);
+            return uploadFile(file, `photo-${index}`, data.teamId);
           }),
         );
         uploadResults.photos = photoResults;
