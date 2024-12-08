@@ -2,7 +2,9 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ExternalLinkIcon } from 'lucide-react';
+import { DownloadIcon, ExternalLinkIcon } from 'lucide-react';
+
+import Button from '@/components/button';
 
 
 
@@ -35,6 +37,14 @@ const ProjectFileItem = ({ label, url, type, code: _ }) => (
                 height={500}
                 width={900}
             />
+        ) : type === 'PPT' ? (
+            <div className="flex justify-center">
+                <Button variant="primary" className="gap-2 min-w-[200px] h-16" link={process.env.NEXT_PUBLIC_CF_R2_ENDPOINT + '/' + url}>
+                    Download 
+                    {' '}
+                    <DownloadIcon size="16" />
+                </Button>
+            </div>
         ) : (
             <video
                 src={process.env.NEXT_PUBLIC_CF_R2_ENDPOINT + '/' + url}

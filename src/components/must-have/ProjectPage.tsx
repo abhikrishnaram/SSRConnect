@@ -32,7 +32,7 @@ const ProjectPage = ({ project }: { project :any }) => {
     {
       name: 'Presentation',
       url: project.presentation,
-      type: 'PDF',
+      type: project?.presentation?.includes('pdf') ? 'PDF' : 'PPT',
     },
     {
       name: 'Report',
