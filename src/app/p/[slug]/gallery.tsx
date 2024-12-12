@@ -1,105 +1,83 @@
-'use client';
-import Image from 'next/image';
-import 'yet-another-react-lightbox/styles.css';
-import 'yet-another-react-lightbox/plugins/thumbnails.css';
-import {
-  isImageFitCover,
-  isImageSlide,
-  useLightboxProps,
-  useLightboxState,
-} from 'yet-another-react-lightbox';
-import React from 'react';
+"use client";
+import type { NextPage } from "next";
+import type { LightGallery } from "lightgallery/lightgallery";
 
-function isNextJsImage(slide) {
-  return (
-    isImageSlide(slide) &&
-        typeof slide.width === 'number' &&
-        typeof slide.height === 'number'
-  );
-}
+import Image from "next/image";
 
-const NextJSImage = ({ slide, offset, rect }) => {
+import LightGalleryComponent from "lightgallery/react";
+import "lightgallery/css/lightgallery.css";
 
-  console.log('asljdn lkna sldnlisda', slide, offset, rect);
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import "lightgallery/css/lg-thumbnail.css";
 
-  const {
-    on: { click },
-    carousel: { imageFit },
-  } = useLightboxProps();
+import lgZoom from "lightgallery/plugins/zoom";
+import "lightgallery/css/lg-zoom.css";
 
-  const { currentIndex } = useLightboxState();
+import { useRef } from "react";
 
-  const cover = isImageSlide(slide) && isImageFitCover(slide, imageFit);
-
-  if(!isNextJsImage(slide)) return undefined;
-
-  const width = !cover
-    ? Math.round(
-      Math.min(rect.width, (rect.height / slide.height) * slide.width),
-    )
-    : rect.width;
-
-  const height = !cover
-    ? Math.round(
-      Math.min(rect.height, (rect.width / slide.width) * slide.height),
-    )
-    : rect.height;
-
-
-  return (
-      <div style={{ position: 'relative', width, height }}>
-          <img
-              // fill
-              alt=""
-              src={process.env.NEXT_PUBLIC_CF_R2_ENDPOINT + '/' + slide}
-              loading="eager"
-              draggable={false}
-              placeholder={slide.blurDataURL ? 'blur' : undefined}
-              style={{
-                objectFit: cover ? 'cover' : 'contain',
-                cursor: click ? 'pointer' : undefined,
-              }}
-              sizes={`${Math.ceil((width / window.innerWidth) * 100)}vw`}
-              onClick={offset === 0 ? () => click?.({ index: currentIndex }) : undefined}
-          />
-      </div>
-  );
+type ImageEnhanced = {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
 };
 
-const Gallery = ({ images }) => {
-  
-  // const [open, setOpen] = useState(false);
-  // const [index, setIndex] = useState(0);
-    
-  return (
-      <div>
-          <div className="text-primary text-xl font-semibold mt-12 mb-2 pb-2 justify-between flex items-center">
-              <div>Image Gallery</div>
-          </div>
-          <div className="grid grid-cols-4 gap-2">
-              {images?.map((photo: string, index: number) => (
-                  <Image
-                      // onClick={() => {
-                      //   setIndex(index);
-                      //   setOpen(true);
-                      //{/*}}*/}
-                      key={index}
-                      src={process.env.NEXT_PUBLIC_CF_R2_ENDPOINT + '/' + photo}
-                      className="rounded-lg w-full h-auto cursor-pointer"
-                      alt="Gallery"
-                      height={300}
-                      width={400}
-                  />
-              ))}
-          </div>
-          {/*<Lightbox*/}
-          {/*    open={open}*/}
-          {/*    close={() => setOpen(false)}*/}
-          {/*    index={index}*/}
-          {/*    slides={images}*/}
-          {/*    // render={{ slide: NextJSImage, thumbnail: NextJSImage }}*/}
-          {/*    // plugins={images}*/}
-          {/*/>*/}
+type ImageGalleryPageProps = {
+    images: ImageEnhanced[];
+};
+
+const ImageGalleryPage: NextPage<ImageGalleryPageProps> = ({ images }) => {
+
+    const lightbox = useRef<LightGallery | null>(null);
+
+    return (
+        <>
+            {/* Lightbox that opens on image clicks */}
+            <LightGalleryComponent
+                // Once the component initializes, we'll assign the instance to our React ref.  This is used in the onClick() handler of each image in the Masonry layout
+                onInit={(ref) => {
+                    if (ref) {
+                        lightbox.current = ref.instance;
+                    }
+                }}
+                plugins={[lgThumbnail, lgZoom]}
+                // These options turn the component into a "controlled" component that let's us determine when to open/close it
+                dynamic
+                dynamicEl={images.map((image) => ({
+                    src: process.env.NEXT_PUBLIC_CF_R2_ENDPOINT + '/' + image,
+                    thumb: process.env.NEXT_PUBLIC_CF_R2_ENDPOINT + '/' + image,
+                    width: '200',
+                    alt: 'img',
+                }))}
+            />
+            <div className="flex flex-wrap gap-4">
+                {images.map((img, idx) => (
+                    <Image
+                        key={idx}
+                        className="hover:opacity-80 cursor-pointer w-[240px] h-auto aspect-square object-cover"
+                        // Here, we're using the ref to dynamically open the gallery to the exact image that was clicked by the user
+                        onClick={() => lightbox.current?.openGallery(idx)}
+                        src={process.env.NEXT_PUBLIC_CF_R2_ENDPOINT + '/' + img}
+                        alt="img"
+                        width="300"
+                        height="400"
+                    />
+                ))}
+            </div>
+        </>
+    );
+};
+
+const Gallery = ({images}) => {
+
+    return (
+        <div>
+            <div className="text-primary text-xl font-semibold mt-12 mb-2 pb-2 justify-between flex items-center">
+                <div>Image Gallery</div>
+            </div>
+            <div className="mx-auto">
+            <ImageGalleryPage images={images} />
+            </div>
       </div>
   );
 };

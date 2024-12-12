@@ -45,6 +45,7 @@
     "framer-motion": "^10.16.5",
     "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
+    "lightgallery": "^2.8.2",
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.462.0",
     "next": "15.1.0",
@@ -66,7 +67,6 @@
     "tailwindcss-animate": "^1.0.7",
     "use-debounce": "^10.0.0",
     "validator": "^13.11.0",
-    "yet-another-react-lightbox": "^3.21.7",
     "z": "^1.0.1",
     "zod": "^3.22.4"
   },
