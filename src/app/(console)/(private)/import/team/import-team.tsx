@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TeamImportResponse } from '@/types/response';
 
-export default function TeamBulkImport({ onComplete }: { onComplete: (_: TeamImportResponse) => void }) {
+export default function TeamMentorsBulkImport({ onComplete }: { onComplete: (_: TeamImportResponse) => void }) {
 
   const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,36 +38,29 @@ export default function TeamBulkImport({ onComplete }: { onComplete: (_: TeamImp
     });
   };
 
-  const processTeams = (data: any[]): any[] => {
-    const teamMap = new Map<string, any>();
-
-    data.slice(1).forEach(row => {
-      const [teamId, teamMembers, rollNumber] = row;
-
-      if(!teamId) return; // Skip empty rows
-
-      // Create or update team entry
-      if(!teamMap.has(teamId)) {
-        teamMap.set(teamId, {
-          code: teamId.replace(/[\s\-_]/g, ''),
-          members: [],
-        });
+  const processMentors = (data) => {
+    const teamsWithMentors = [];
+    data.forEach((row, index) => {
+      // Skip the header row
+      if (index === 0) {
+          return;
       }
 
-      const team = teamMap.get(teamId);
-      team.members.push({
-        id: rollNumber,
-        name: teamMembers,
-      });
+      // Ensure each team has only one mentor (teamID -> mentorEmail mapping)
+      if (row.length === 2) {
+        teamsWithMentors.push({
+          teamID: row[0].replace(/[\s\-_]/g, ''),
+          email: row[1]
+        });
+      }
     });
-
-    return Array.from(teamMap.values());
+    console.log(teamsWithMentors, 'asjkdhgk');
+    return teamsWithMentors;
   };
 
   const handleImport = async () => {
-    if(!file) {
+    if (!file) {
       alert('Please select a file');
-      // toast.error('Please select a file');
       return;
     }
 
@@ -76,38 +69,36 @@ export default function TeamBulkImport({ onComplete }: { onComplete: (_: TeamImp
 
       // Parse CSV file
       const csvData = await parseCSV(file);
-
-      // Process teams
-      const teams = processTeams(csvData);
-
+      // Process the CSV data to map each teamID to a mentor
+      const teamsWithMentors = processMentors(csvData);
+      console.log(teamsWithMentors);
       // Send to API
-      const response = await fetch('/api/import/teams', {
+      const response = await fetch('/api/import/teams-mentor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(teams),
+        body: JSON.stringify(teamsWithMentors),
       });
 
       const result = await response.json();
 
-      if(response.ok) {
-        // toast.success(`Successfully imported ${result.teams.length} teams`);
+      if (response.ok) {
+        // Successfully imported teams with mentors
         onComplete(result);
         // Optional: reset file input
         setFile(null);
       } else {
-        alert(result.message || 'Failed to import teams');
-        // toast.error(result.message || 'Failed to import teams');
+        alert(result.message || 'Failed to import mentors to teams');
       }
     } catch (error) {
       console.error('Import error:', error);
       alert('An unexpected error occurred');
-      // toast.error('An unexpected error occurred');
     } finally {
       setIsLoading(false);
     }
   };
+
 
   return (
       <div className="max-w-md mx-auto p-6 bg-white border rounded-lg shadow-md">

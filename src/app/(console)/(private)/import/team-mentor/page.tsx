@@ -6,7 +6,7 @@ import SuccessCard from '@/app/(console)/(private)/import/team/success-card';
 import { TeamImportResponse } from '@/types/response';
 
 
-const ImportTeam = () => {
+const ImportTeamMentor = () => {
 
   const [completionDetails, setCompletionDetails] = useState<TeamImportResponse | null>(null);
 
@@ -53,4 +53,4 @@ SSR24002,jane@am.amrita.edu`}
   );
 };
 
-export default ImportTeam;
+export default ImportTeamMentor;

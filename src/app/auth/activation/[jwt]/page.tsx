@@ -1,12 +1,6 @@
 import { activateUser } from '@/lib/actions/authActions';
 
-interface Props {
-  params: {
-    jwt: string;
-  };
-}
-
-const ActivationPage = async ({ params }: Props) => {
+const ActivationPage = async ({ params }) => {
   const result = await activateUser(params.jwt);
   return (
       <div className="h-screen flex flex-col items-center justify-center">

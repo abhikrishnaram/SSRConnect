@@ -1,16 +1,10 @@
-import { auth } from '@auth';
 import { redirect } from 'next/navigation';
 
 import LoginForm from './form';
 
-interface Props {
-  searchParams: {
-    callback?: string;
-    error?: string;
-  };
-}
+import { auth } from '@auth';
 
-const LoginPage = async ({ searchParams }: Props) => {
+const LoginPage = async ({ searchParams }) => {
 
   const session = await auth();
   if(session?.user) redirect(searchParams.callback ? searchParams.callback : '/dashboard');

@@ -30,7 +30,7 @@ const ReviewerPanel = ({ team }) => {
                           </div>
                           <div className="text-left">
                               <div className="text-gray-700 line-clamp-1 font-bold text-lg">
-                                  {team?.mentor ? team?.mentor?.name : (
+                                  {team?.mentor ? (team?.mentor?.firstName + ' ' + team?.mentor?.lastName) : (
                                       <span className="text-red-500">Not Assigned</span>)}
                               </div>
                               <div className="text-gray-500 text-sm">Reviewer / Mentor</div>

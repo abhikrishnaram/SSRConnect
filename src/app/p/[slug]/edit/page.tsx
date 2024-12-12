@@ -6,7 +6,7 @@ import auth from '@auth';
 import ProjectEditor from '@/components/must-have/ProjectEditor';
 import AppView from '@/app/(console)/_appview';
 
-const ProjectSlugEditPage = async ({ params }: { params: { slug: string } }) => {
+const ProjectSlugEditPage = async ({ params }) => {
 
   const session = await auth();
   const user = session?.user;

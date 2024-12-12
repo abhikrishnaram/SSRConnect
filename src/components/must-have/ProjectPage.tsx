@@ -7,7 +7,6 @@ import {
   UserIcon,
 } from 'lucide-react';
 import React from 'react';
-import Image from 'next/image';
 import clsx from 'clsx';
 
 import ProjectFileItem from '@/app/p/[slug]/project-item';
@@ -74,7 +73,7 @@ const ProjectPage = ({ project }: { project :any }) => {
               </div>
               <div className="bg-white rounded-lg mt-6 h-full">
                   <div className="relative rounded-lg">
-                      <div className="flex items-center justify-center flex-col rounded-lg min-h-[30rem] h-full w-full object-cover border py-12">
+                      <div className="flex items-center justify-center flex-col rounded-lg min-h-[30rem] h-full w-full object-cover border py-12 px-4 xl:px-0">
                           <div className="w-full max-w-full xl:max-w-[900px]">
                               {!project?.isAccepted && <ReviewerPanel team={team} />}
                               <div className="bg-background border rounded-lg grid grid-cols-4">
@@ -82,10 +81,12 @@ const ProjectPage = ({ project }: { project :any }) => {
                                       className={clsx('flex flex-col gap-2 p-6 items-start justify-start mb-2', project?.link ? 'col-span-3' : 'col-span-4')}
                                   >
                                       <div className="text-left text-3xl font-bold mb-2">{project.name}</div>
-                                      <div className="flex justify-center items-center text-xs">
+                                      <div className="flex justify-center items-center text-sm">
                                           Team
                                           {' '}
                                           {project?.code}
+                                          {' | '}
+                                          {project?.theme?.name}
                                       </div>
                                   </div>
                                   {project?.link && (
@@ -98,7 +99,7 @@ const ProjectPage = ({ project }: { project :any }) => {
                                       </Link>
                                   )}
                               </div>
-                              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8">
+                              <div className="grid md:grid-cols-3 xl:grid-cols-3 gap-4 mt-8">
                                   <div
                                       className="max-w-[300px] bg-gradient-to-br from-primary to-primary/80 w-full rounded-lg p-4"
                                   >
@@ -110,29 +111,21 @@ const ProjectPage = ({ project }: { project :any }) => {
                                   {team?.mentor && (
                                       <div className="bg-slate-100 rounded-lg flex items-center justify-between gap-4 max-w-[300px] w-full p-4">
                                           <div className="flex items-center gap-4">
-                                              <div className="w-16 h-16 rounded-full aspect-square">
-                                                  <Image
-                                                      src="/assets/avatar.svg"
-                                                      alt="User"
-                                                      width={100}
-                                                      height={100}
-                                                      className="rounded-full aspect-square"
-                                                  />
-                                              </div>
+                                              {/*<div className="w-16 h-16 rounded-full aspect-square">*/}
+                                              {/*    <Image*/}
+                                              {/*        src="/assets/avatar.svg"*/}
+                                              {/*        alt="User"*/}
+                                              {/*        width={100}*/}
+                                              {/*        height={100}*/}
+                                              {/*        className="rounded-full aspect-square"*/}
+                                              {/*    />*/}
+                                              {/*</div>*/}
                                               <div className="text-left">
-                                                  <div className="text-gray-700 font-bold text-lg">{team?.mentor?.name}</div>
-                                                  <Link
-                                                      href={`mailto:${team?.mentor?.email}`}
-                                                      className="text-gray-700 text-sm underline"
-                                                  >
-                                                      {team?.mentor?.email}
-                                                  </Link>
+                                                  <div className="text-gray-700 font-bold text-lg">{team?.mentor?.firstName + ' ' + team?.mentor?.lastName}</div>
+                                                  <div className="text-sm text-gray-500">
+                                                      <span className="mr-2">Mentor</span>
+                                                  </div>
                                               </div>
-                                          </div>
-                                          <div
-                                              className="bg-white aspect-square border h-full flex justify-center items-center font-bold rounded-lg"
-                                          >
-                                              {team?.mentor?.uid}
                                           </div>
                                       </div>
                                   )}

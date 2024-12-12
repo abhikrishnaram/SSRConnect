@@ -9,7 +9,7 @@ import TeamSidebar from './team';
 // import PDFViewer from '@/components/pdf-viewer';
 import Button from '@/components/button';
 
-const ProposalPage = ({ params }: { params: { id: string } }) => {
+const ProposalPage = ({ params }) => {
 
   const role = 'ADMIN';
 

@@ -2,7 +2,7 @@ import { getProject } from '@/lib/actions/projectActions';
 import ProjectPage from '@/components/must-have/ProjectPage';
 import AppView from '@/app/(landing)/_appview';
 
-const ProjectSlugPage = async ({ params }: { params: { slug: string } }) => {
+const ProjectSlugPage = async ({ params }) => {
 
   const project = await getProject(params.slug);
 

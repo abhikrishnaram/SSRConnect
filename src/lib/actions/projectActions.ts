@@ -19,7 +19,11 @@ export async function getProject(code: string) : Promise<Project | TError> {
     const project = await prisma.project.findUnique({
       where: { code },
       include: {
-        Team: true,
+        Team: {
+          include: {
+            mentor: true,
+          }
+        },
         theme: true,
       },
     }).then(r => r);
@@ -48,7 +52,14 @@ export async function getProjectByID(id: string) : Promise<Project | TError> {
       include: {
         Team: {
           include: {
-            mentor: true,
+            mentor: {
+              select: {
+                id: true,
+                firstName: true,
+                lastName: true,
+                email: true,
+              },
+            },
           },
         },
       },
