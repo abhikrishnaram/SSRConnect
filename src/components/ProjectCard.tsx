@@ -11,7 +11,7 @@ const ProjectCard = ({ project, height = '170px', isEdit = false }: { project: T
   const handleShare: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    handle_share(e, { title: `Hey checkout this SSR project by team ${project.code}`, description: `${project.name} by Team ${project.code}` }, `${process.env.NEXTAUTH_URL}/p/${project.code}`);
+    handle_share(e, { title: `Hey checkout this SSR project by team ${project.code}`, description: `${project.name} by Team ${project.code}` }, `/p/${project.code}`);
   };
 
   return (

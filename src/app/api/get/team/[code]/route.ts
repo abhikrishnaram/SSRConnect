@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   
   const team = await prisma.team.findUnique({
     where: { code },
-    include: { project: { select: { id: true } } },
+    include: { project: { select: { id: true } }, mentor: true },
   });
 
   if(!team)

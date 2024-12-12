@@ -35,7 +35,7 @@ const TeamFieldsSection = ({ control, teamIDs, team, setTeam, onTeamSelect, erro
           control={control}
           Icon={Book}
           title="Team Information"
-          description="Please select your team ID from the list below. If your team doesn't exist, contant your mentor."
+          description="Please select your team ID from the list below. If your team doesn't exist, contact your mentor."
           items={[
             {
               name: 'teamId',
@@ -88,33 +88,36 @@ const TeamFieldsSection = ({ control, teamIDs, team, setTeam, onTeamSelect, erro
                           </div>
                           {team?.mentor && (
                               <>
-                                  <div className="font-bold text-gray-400 text-lg">Mentor</div>
                                   <div className="bg-slate-100 rounded-lg p-4 flex items-center justify-between gap-4">
-                                      <div className="flex items-center gap-4">
-                                          <div className="w-16 h-16 rounded-full">
-                                              <Image
-                                                  src="/assets/avatar.svg"
-                                                  alt="User"
-                                                  width={100}
-                                                  height={100}
-                                                  className="rounded-full aspect-square"
-                                              />
+                                      <div className="text-gray-900 flex flex-col w-full">
+                                          <div className="flex items-center gap-4">
+                                              <div
+                                                  className="w-12 h-12 bg-gray-50 flex items-center justify-center rounded-full">
+                                                  {/*<Image*/}
+                                                  {/*    src="/assets/avatar.svg"*/}
+                                                  {/*    alt="User"*/}
+                                                  {/*    width={100}*/}
+                                                  {/*    height={100}*/}
+                                                  {/*    className="rounded-full aspect-square"*/}
+                                                  {/*/>*/}
+                                                  <UserIcon className="opacity-30"/>
+                                              </div>
+                                              <div className="text-left">
+                                                  <div className="text-gray-700 font-bold text-lg">{team?.mentor?.firstName + " " + team?.mentor?.lastName}</div>
+                                                  <div className="text-gray-500 text-sm">Mentor</div>
+                                              </div>
                                           </div>
-                                          <div className="text-left">
-                                              <div className="text-gray-700 font-bold text-lg">{team?.mentor?.name}</div>
-                                          </div>
-                                      </div>
-                                      <div className="bg-white aspect-square border h-full flex justify-center items-center font-bold rounded-lg">
-                                          {team?.mentor?.uid}
                                       </div>
                                   </div>
                               </>
                           )}
                           {team?.members?.map((member, index) => (
-                              <div className="bg-slate-100 rounded-lg p-4 flex items-center justify-between gap-4" key={index}>
+                              <div className="bg-slate-100 rounded-lg p-4 flex items-center justify-between gap-4"
+                                   key={index}>
                                   <div className="text-gray-900 flex flex-col w-full">
                                       <div className="flex items-center gap-4">
-                                          <div className="w-12 h-12 bg-gray-50 flex items-center justify-center rounded-full">
+                                          <div
+                                              className="w-12 h-12 bg-gray-50 flex items-center justify-center rounded-full">
                                               {/*<Image*/}
                                               {/*    src="/assets/avatar.svg"*/}
                                               {/*    alt="User"*/}
@@ -122,7 +125,7 @@ const TeamFieldsSection = ({ control, teamIDs, team, setTeam, onTeamSelect, erro
                                               {/*    height={100}*/}
                                               {/*    className="rounded-full aspect-square"*/}
                                               {/*/>*/}
-                                              <UserIcon className="opacity-30" />
+                                              <UserIcon className="opacity-30"/>
                                           </div>
                                           <div className="text-left">
                                               <div className="text-gray-700 font-bold text-lg">{member?.name}</div>

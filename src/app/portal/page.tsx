@@ -42,7 +42,7 @@ const PortalPage = () => {
                           {!data.showProposalSubmission && !data.showProjectSubmission && (
                               <Card className="p-6 bg-red-50">
                                   <h3 className="text-lg font-semibold text-red-600">Submissions Closed</h3>
-                                  <p className="text-gray-500">Submissions are currently not available. Please contact your instructor for further assistance.</p>
+                                  <p className="text-gray-500">Submissions are currently not available. Please contact your mentor for further assistance.</p>
                               </Card>
                           )}
                       </div>
@@ -52,7 +52,7 @@ const PortalPage = () => {
               {/* Right Section */}
               <div className="space-y-6 justify-center items-center flex">
                   <section>
-                      <h2 className="text-2xl text-center text-gray-800 opacity-60 mb-6">Instructors Corner</h2>
+                      <h2 className="text-2xl text-center text-gray-800 opacity-60 mb-6">Mentors Corner</h2>
                       <div className="flex gap-4">
                           {data.isLoggedIn ? (
                               <Link href="/dashboard" prefetch={false}>
@@ -65,7 +65,7 @@ const PortalPage = () => {
                               <Link href="/auth/signin" prefetch={false}>
                                   <Card className="p-6 hover:shadow-lg transition-shadow cursor-pointer rounded">
                                       <h3 className="text-lg font-semibold text-primary">Login</h3>
-                                      <p className="text-gray-500">Please login to access the instructor's corner.</p>
+                                      <p className="text-gray-500">Please login to access the mentor's corner.</p>
                                   </Card>
                               </Link>
                           )}

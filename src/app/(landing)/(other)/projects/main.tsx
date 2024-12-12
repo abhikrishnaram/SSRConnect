@@ -39,7 +39,6 @@ const ProjectsMain = ({ initialData }: any) => {
         useInfiniteQuery(
           'projects',
           async ({ pageParam = '' }) => {
-            await new Promise((res) => setTimeout(res, 1000));
             const res = await fetch('/api/get/projects?cursor=' + (pageParam || '') + '&query=' + query);
             return res.json();
           },
@@ -87,7 +86,7 @@ const ProjectsMain = ({ initialData }: any) => {
                   <div className="text font-bold text-primary mb-3">Search Projects</div>
                   <ProjectsSidebar handleSearch={handleSearch} filter={filter} setFilter={setFilter} />
               </div>
-              <div className="grid md:grid-cols-2 2xl:grid-cols-3 justify-center items-center px-4 gap-6">
+              <div className="flex flex-wrap justify-center items-center px-4 gap-6">
                   {data && data?.pages?.map((page) => {
                     return (
                         <React.Fragment key={page.nextId ?? 'lastPage'}>
