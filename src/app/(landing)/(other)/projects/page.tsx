@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
 import { notFound } from 'next/navigation';
 
 import ProjectsMain from '@/app/(landing)/(other)/projects/main';

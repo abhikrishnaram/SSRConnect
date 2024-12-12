@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useClipboard } from '@nextui-org/use-clipboard';
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
 import { LocateIcon, MailOpenIcon } from 'lucide-react';
 
 import InputField from '@/components/InputField';

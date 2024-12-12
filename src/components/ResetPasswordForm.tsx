@@ -4,7 +4,7 @@ import { passwordStrength } from 'check-password-strength';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
 
 
 import { resetPassword } from '@/lib/actions/authActions';

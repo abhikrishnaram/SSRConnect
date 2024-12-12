@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { useInView } from 'react-intersection-observer';
 import { Skeleton } from '@mui/material';
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
 import { ArrowUpCircleIcon } from 'lucide-react';
 import { useDebouncedCallback } from 'use-debounce';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';

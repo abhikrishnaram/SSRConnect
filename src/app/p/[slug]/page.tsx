@@ -4,7 +4,8 @@ import AppView from '@/app/(landing)/_appview';
 
 const ProjectSlugPage = async ({ params }) => {
 
-  const project = await getProject(params.slug);
+  const { slug } = await params;
+  const project = await getProject(slug);
 
   return <AppView scrollEffect={false} variant="line"><ProjectPage project={project} /></AppView>;
 };

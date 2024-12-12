@@ -28,7 +28,7 @@ export async function getProject(code: string) : Promise<Project | TError> {
       },
     }).then(r => r);
 
-    if(!project.isAccepted) {
+    if(!project?.isAccepted) {
       const session = await auth();
       const user = session?.user;
 

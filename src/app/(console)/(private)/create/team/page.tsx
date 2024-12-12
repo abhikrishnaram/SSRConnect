@@ -3,7 +3,7 @@
 import React, { FormEvent } from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
 import { useRouter } from 'next/navigation';
 
 import Step0 from './step0';

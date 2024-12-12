@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { ArrowLeftIcon } from 'lucide-react';
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
 import Link from 'next/link';
 
 import Button from '@/components/button';

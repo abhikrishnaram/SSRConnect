@@ -1,27 +1,25 @@
 // eslint.config.js
-import stylistic from '@stylistic/eslint-plugin'
+const stylistic = require('@stylistic/eslint-plugin');
 
-export default [
+
+module.exports = [
     {
-        extends: [
-            "airbnb-typescript",
-            "next"
-        ],
-        parserOptions: {
-            "project": "./tsconfig.json"
-        },
-        overrides: [
-            {
-                "files": ["src/**/*.tsx"],
-                "rules": {
-                    "import/no-unused-modules": "off"
-                }
-            }
-        ],
-        plugins: {
-            '@stylistic': stylistic,
-            // 'unused-imports': unused
-        },
+        // extends: [
+        //     "airbnb-typescript",
+        //     "next"
+        // ],
+        // parserOptions: {
+        //     "project": "./tsconfig.json"
+        // },
+        // overrides: [
+        //     {
+        //         "files": ["src/**/*.tsx"],
+        //         "rules": {
+        //             "import/no-unused-modules": "off"
+        //         }
+        //     }
+        // ],
+        plugins: [stylistic],
         rules: {
             "@next/next/no-img-element": "off",
             "@next/next/no-document-import-in-page": "off", // @todo : bug with lint plugin not detecting _document.tsx but only allowing <>.js

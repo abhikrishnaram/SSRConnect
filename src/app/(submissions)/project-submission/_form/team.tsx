@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Book, UserIcon } from 'lucide-react';
-import { toast } from 'react-toastify';
+import toast from "react-hot-toast";
 import Image from 'next/image';
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';

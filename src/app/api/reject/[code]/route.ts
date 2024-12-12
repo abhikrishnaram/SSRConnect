@@ -16,7 +16,7 @@ export async function GET(req: Request) {
     const user = session?.user;
 
     if(project && !project.isAccepted && user && (user?.isAdmin || user?.id === project?.Team?.mentor?.id)) {
-        prisma.project.delete({
+        return prisma.project.delete({
             where: { code },
         }).then(r => {
             if(!r) return new Response(JSON.stringify({ error: 'Something went wrong' }), { status: 400 });
@@ -25,6 +25,7 @@ export async function GET(req: Request) {
             // console.error(e);
             return new Response(JSON.stringify({ error: 'Something went wrong', details: e }), { status: 400 });
         });
-    } else
-        return new Response(JSON.stringify({ error: 'Project not found' }), { status: 404 });
+    }
+
+    return new Response(JSON.stringify({ error: 'Something went wrong' }), { status: 500 });
 }

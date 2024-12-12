@@ -16,7 +16,7 @@ export async function GET(req: Request) {
   const user = session?.user;
   
   if(project && !project.isAccepted && user && (user?.isAdmin || user?.id === project?.Team?.mentor?.id)) {
-    prisma.project.update({
+    return prisma.project.update({
       where: { code },
       data: { isAccepted: true },
     }).then(r => {
@@ -28,6 +28,6 @@ export async function GET(req: Request) {
     });
   } else if(!project)
     return new Response(JSON.stringify({ error: 'Project not found' }), { status: 404 });
-  else
-    return new Response(JSON.stringify({ error: 'Project already accepted' }), { status: 400 });
+
+  return new Response(JSON.stringify({ error: 'Project already accepted' }), { status: 400 });
 }
