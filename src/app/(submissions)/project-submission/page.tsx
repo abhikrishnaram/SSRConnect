@@ -24,7 +24,7 @@ import ProjectSubmissionSuccess from '@/app/(submissions)/project-submission/_fo
 import { TProjectSubmissionForm } from '@/app/(submissions)/project-submission/form-type';
 
 const generateTeamIDs = () => {
-  const currentYear = new Date().getFullYear().toString().slice(-2);
+  const currentYear = 2024.toString().slice(-2);
   return Array.from({ length: 150 }, (_, index) =>
     `SSR${currentYear}-${String(index + 1).padStart(3, '0')}`,
   );
